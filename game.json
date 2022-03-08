@@ -412,6 +412,51 @@
         "name": "slimeWalk2.png",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "swamp/4 Animated objects/Coin.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "swamp\\4 Animated objects\\Coin.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "swamp/3 Objects/Pointers/8.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "swamp\\3 Objects\\Pointers\\8.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Gem1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Gem1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "file": "Assets/coin.wav",
+        "kind": "audio",
+        "metadata": "",
+        "name": "Assets\\coin.wav",
+        "preloadAsMusic": false,
+        "preloadAsSound": false,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "Assets/Gem2.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "Assets\\Gem2.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -443,11 +488,29 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.43999999999999984,
+        "zoomFactor": 0.6399999999999998,
         "windowMask": false
       },
-      "objectsGroups": [],
-      "variables": [],
+      "objectsGroups": [
+        {
+          "name": "GEM",
+          "objects": [
+            {
+              "name": "Gem1"
+            },
+            {
+              "name": "Gem2"
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "name": "Score",
+          "type": "string",
+          "value": "0"
+        }
+      ],
       "instances": [
         {
           "angle": 0,
@@ -602,8 +665,8 @@
           "name": "Slime",
           "persistentUuid": "ad88ac9d-edc6-4133-b506-38841b24169f",
           "width": 0,
-          "x": 364,
-          "y": 339,
+          "x": 377,
+          "y": 487,
           "zOrder": 102,
           "numberProperties": [],
           "stringProperties": [],
@@ -640,6 +703,22 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "GUI",
+          "locked": false,
+          "name": "Score",
+          "persistentUuid": "5262e319-686a-47ea-bcb6-8b42fb964c76",
+          "width": 0,
+          "x": 32,
+          "y": 22,
+          "zOrder": 105,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -652,9 +731,6 @@
           "effects": [],
           "behaviors": [
             {
-              "name": "PlatformerObject",
-              "type": "PlatformBehavior::PlatformerObjectBehavior",
-              "jumpSpeed": 900,
               "acceleration": 1500,
               "canGoDownFromJumpthru": true,
               "canGrabPlatforms": false,
@@ -662,11 +738,14 @@
               "deceleration": 1500,
               "gravity": 1000,
               "ignoreDefaultControls": false,
+              "jumpSpeed": 600,
               "jumpSustainTime": 0.2,
               "ladderClimbingSpeed": 150,
               "maxFallingSpeed": 700,
               "maxSpeed": 250,
+              "name": "PlatformerObject",
               "slopeMaxAngle": 60,
+              "type": "PlatformBehavior::PlatformerObjectBehavior",
               "useLegacyTrajectory": false,
               "xGrabTolerance": 10,
               "yGrabOffset": 0
@@ -2774,10 +2853,10 @@
           "effects": [],
           "behaviors": [
             {
-              "canBeGrabbed": true,
               "name": "Platform",
-              "platformType": "NormalPlatform",
               "type": "PlatformBehavior::PlatformBehavior",
+              "canBeGrabbed": true,
+              "platformType": "NormalPlatform",
               "yGrabOffset": 0
             }
           ]
@@ -2851,6 +2930,184 @@
               ]
             }
           ]
+        },
+        {
+          "name": "Gem1",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "value",
+              "type": "string",
+              "value": "100"
+            }
+          ],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "Tween",
+              "type": "Tween::TweenBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "Assets\\Gem1.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pointer",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "Tween",
+              "type": "Tween::TweenBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.07999999821186066,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "swamp\\3 Objects\\Pointers\\8.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Gem2",
+          "tags": "",
+          "type": "Sprite",
+          "updateIfNotVisible": false,
+          "variables": [
+            {
+              "name": "value",
+              "type": "string",
+              "value": "200"
+            }
+          ],
+          "effects": [],
+          "behaviors": [
+            {
+              "name": "Tween",
+              "type": "Tween::TweenBehavior"
+            }
+          ],
+          "animations": [
+            {
+              "name": "",
+              "useMultipleDirections": false,
+              "directions": [
+                {
+                  "looping": false,
+                  "timeBetweenFrames": 0.08,
+                  "sprites": [
+                    {
+                      "hasCustomCollisionMask": false,
+                      "image": "Assets\\Gem2.png",
+                      "points": [],
+                      "originPoint": {
+                        "name": "origine",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "centerPoint": {
+                        "automatic": true,
+                        "name": "centre",
+                        "x": 0,
+                        "y": 0
+                      },
+                      "customCollisionMask": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "bold": false,
+          "italic": false,
+          "name": "Score",
+          "smoothed": true,
+          "tags": "",
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "Text",
+          "font": "",
+          "characterSize": 30,
+          "color": {
+            "b": 231,
+            "g": 94,
+            "r": 25
+          }
         }
       ],
       "events": [
@@ -2870,7 +3127,7 @@
           "comment2": ""
         },
         {
-          "disabled": true,
+          "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
@@ -2889,20 +3146,6 @@
             {
               "type": {
                 "inverted": false,
-                "value": "PlayMusic"
-              },
-              "parameters": [
-                "",
-                "Caketown 1.mp3",
-                "yes",
-                "",
-                ""
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
                 "value": "AddForceXY"
               },
               "parameters": [
@@ -2914,7 +3157,33 @@
               "subInstructions": []
             }
           ],
-          "events": []
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Repeat",
+              "repeatExpression": "6",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "CreateByName"
+                  },
+                  "parameters": [
+                    "",
+                    "GEM",
+                    "\"Gem\"+ToString(RandomInRange(1,2))",
+                    "RandomWithStep(100,1200,50)",
+                    "RandomInRange(10,50)*4+200",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         },
         {
           "disabled": false,
@@ -3163,7 +3432,7 @@
               "parameters": [
                 "",
                 "=",
-                "lerp(Camera.X(),Girl.X(),1)",
+                "Girl.X()",
                 "",
                 ""
               ],
@@ -3242,6 +3511,21 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Collision",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -3250,11 +3534,99 @@
                 "value": "CollisionNP"
               },
               "parameters": [
-                "Wall",
-                "Slime",
+                "Girl",
+                "GEM",
                 "",
                 "",
                 ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Tween::AddObjectPositionYTween"
+              },
+              "parameters": [
+                "GEM",
+                "Tween",
+                "\"test\"",
+                "Gem1.Y()-60",
+                "\"easeInOutQuad\"",
+                "2000",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Tween::AddObjectOpacityTween"
+              },
+              "parameters": [
+                "GEM",
+                "Tween",
+                "\"alpha\"",
+                "0",
+                "\"easeOutBounce\"",
+                "2000",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "Assets\\coin.wav",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "Score",
+                "+",
+                "GEM.Variable(value)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Tween::IsPlaying"
+              },
+              "parameters": [
+                "GEM",
+                "Tween",
+                "\"test\""
               ],
               "subInstructions": []
             }
@@ -3263,24 +3635,137 @@
             {
               "type": {
                 "inverted": false,
-                "value": "AddForceXY"
+                "value": "Tween::AddObjectScaleXTween"
+              },
+              "parameters": [
+                "GEM",
+                "Tween",
+                "\"flip\"",
+                "floor(mod(Gem1.Y(),2))*2-1",
+                "\"linear\"",
+                "100",
+                "",
+                "yes"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Egal"
+              },
+              "parameters": [
+                "cos(ToRad(Slime.SineMovement::SineProgressX()))",
+                "<",
+                "-0.95"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "FlipX"
               },
               "parameters": [
                 "Slime",
-                "100",
-                "0",
-                "1"
+                "yes"
               ],
               "subInstructions": []
-            },
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Egal"
+              },
+              "parameters": [
+                "cos(ToRad(Slime.SineMovement::SineProgressX()))",
+                ">",
+                "0.95"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "FlipX"
+              },
+              "parameters": [
+                "Slime",
+                "no"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Opacity"
+              },
+              "parameters": [
+                "GEM",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
             {
               "type": {
                 "inverted": false,
                 "value": "Delete"
               },
               "parameters": [
-                "Slime",
+                "GEM",
                 ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "Score",
+                "=",
+                "VariableString(Score)"
               ],
               "subInstructions": []
             }
@@ -3321,6 +3806,17 @@
             }
           ],
           "effects": []
+        },
+        {
+          "ambientLightColorB": 83886080,
+          "ambientLightColorG": 6031344,
+          "ambientLightColorR": 7591080,
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "name": "GUI",
+          "visibility": true,
+          "cameras": [],
+          "effects": []
         }
       ],
       "behaviorsSharedData": [
@@ -3335,6 +3831,10 @@
         {
           "name": "SineMovement",
           "type": "SineMovement::SineMovement"
+        },
+        {
+          "name": "Tween",
+          "type": "Tween::TweenBehavior"
         }
       ]
     }
