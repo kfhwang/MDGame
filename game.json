@@ -18,6 +18,7 @@
     "useExternalSourceFiles": false,
     "version": "1.0.0",
     "name": "Damp Badge",
+    "description": "",
     "author": "",
     "windowWidth": 800,
     "windowHeight": 600,
@@ -43,6 +44,7 @@
       "showProgressBar": true
     },
     "authorIds": [],
+    "playableDevices": [],
     "extensionProperties": [],
     "platforms": [
       {
@@ -13647,7 +13649,7 @@
           "height": 0,
           "layer": "",
           "locked": false,
-          "name": "Player1",
+          "name": "StackPlayer1",
           "persistentUuid": "6e1977fa-5dc1-45b4-97ba-2ba362a9127c",
           "width": 0,
           "x": 122,
@@ -13663,7 +13665,7 @@
           "height": 0,
           "layer": "",
           "locked": false,
-          "name": "Player2",
+          "name": "StackPlayer2",
           "persistentUuid": "9d5c7b02-8fef-4a04-ba2c-fd2ac20c9d3c",
           "width": 0,
           "x": 121,
@@ -14495,7 +14497,7 @@
           ]
         },
         {
-          "name": "Player2",
+          "name": "StackPlayer2",
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -14510,7 +14512,7 @@
           "animations": []
         },
         {
-          "name": "Player1",
+          "name": "StackPlayer1",
           "tags": "",
           "type": "Sprite",
           "updateIfNotVisible": false,
@@ -14670,29 +14672,12 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Tween::AddObjectPositionTween"
-                  },
-                  "parameters": [
-                    "Cards",
-                    "Tween",
-                    "\"ToP1\"",
-                    "Player1.X()+ArrayTools::IndexOf(\"Player1\", Cards.Variable(No))*85",
-                    "Player1.Y()",
-                    "\"easeInOutQuint\"",
-                    "1000",
-                    ""
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
                     "value": "ObjectStack::ObjectStack::AddOnTop"
                   },
                   "parameters": [
+                    "StackPlayer1",
+                    "ObjectStack",
                     "Cards",
-                    "",
-                    "Player1",
                     ""
                   ],
                   "subInstructions": []
@@ -14754,9 +14739,9 @@
                     "value": "ObjectStack::ObjectStack::AddOnTop"
                   },
                   "parameters": [
+                    "StackPlayer2",
+                    "ObjectStack",
                     "Cards",
-                    "",
-                    "Player2",
                     ""
                   ],
                   "subInstructions": []
@@ -14770,8 +14755,65 @@
                     "Cards",
                     "Tween",
                     "\"ToP1\"",
-                    "Player1.X()+ArrayTools::IndexOf(\"Player2\", Cards.Animation())*85",
-                    "Player2.Y()",
+                    "StackPlayer1.X() + ArrayTools::IndexOf(\"Player2\", Cards.Animation()) * 85",
+                    "StackPlayer2.Y()",
+                    "\"easeInOutQuint\"",
+                    "1000",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "使用堆疊判斷屬於Player1的Card進行Tween",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::ForEach",
+              "object": "Cards",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ObjectStack::Contains"
+                  },
+                  "parameters": [
+                    "",
+                    "StackPlayer1",
+                    "ObjectStack",
+                    "Cards",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Tween::AddObjectPositionTween"
+                  },
+                  "parameters": [
+                    "Cards",
+                    "Tween",
+                    "\"ToP1\"",
+                    "StackPlayer1.X() + ArrayTools::IndexOf(\"Player1\", Cards.Variable(No)) * 85",
+                    "StackPlayer1.Y()",
                     "\"easeInOutQuint\"",
                     "1000",
                     ""
@@ -14865,6 +14907,14 @@
             }
           ],
           "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [],
+          "events": []
         }
       ],
       "layers": [
@@ -14907,6 +14957,7 @@
   "eventsFunctionsExtensions": [
     {
       "author": "@Lizard-13",
+      "category": "",
       "description": "An action which, when applied on some objects, snap these objects to a *virtual grid*, with cells having customizable width and height.\n\nUseful for level editors or putting objects on a tiled based map (RPG, strategy games, or any tiled based game in general).",
       "extensionNamespace": "",
       "fullName": "Snap objects to a virtual grid",
@@ -15036,6 +15087,7 @@
     },
     {
       "author": "Arthur Pacaud (arthuro555)",
+      "category": "",
       "description": "> Note: This extension is currently made in JavaScript instead of the event sheet as variables cannot be passed to events based functions yet. Due to this hack, the extension **only works on root scene variables**, not on child variables or non-scene variables.\n\nThis extension adds features like:\n- Combining arrays (concatenate into new array, append all children to another array)\n- Finding a value in an array (find index expression, contains condition)\n- Reversing arrays\n- Get a portion of an array (slice)\n- Add and remove lots of children at specific indices at once (fill, splice, shift, pop, add at index)\n- Randomness (shuffle children, get a random child)\n- Mathematical operations using arrays (sum of all numbers, biggest/smallest number, average number, median number)\n- Sort numbers in an array\n- String inter-operation (split string into array, join array array children to string)",
       "extensionNamespace": "",
       "fullName": "Array tools",
@@ -16432,6 +16484,7 @@
     },
     {
       "author": "D8H",
+      "category": "",
       "description": "It provides:\n* Actions to modify a stack of objects\n* Conditions to access the objects of a stack\n* A shuffle action\n\nIt can be helpful for:\n* Card games\n* Fair randomness (for instance, to create a stack of predetermined bonus and randomize the order they appear)",
       "extensionNamespace": "",
       "fullName": "Object Stack",
@@ -17277,6 +17330,7 @@
     },
     {
       "author": "Entropy",
+      "category": "",
       "description": "A behavior to turn a shape painter into a rating system indicated by stars.",
       "extensionNamespace": "",
       "fullName": "Star Rating",
@@ -18099,6 +18153,7 @@
     },
     {
       "author": "@4ian, Tristan Rhodes (https://victrisgames.itch.io/)",
+      "category": "",
       "description": "Allow an object to move smoothly on the X and/or Y axis following a sine wave, or an ellipsis.\n\n\nExample uses:\n- Floating objects, such as powerups or coins\n- Moveable platforms\n- Enemy movement patterns\n\nProperties:\n- Horizontal distance\n- Vertical distance\n- Horizontal speed\n- Vertical speed\n- Center of movement, X position\n- Center of movement, Y position\n\nTips:\n- For circular or elliptical movement, the horizontal and vertical speed need to be the same\n- For horizontal movement only, set vertical distance to 0\n- For vertical movement only, set horizontal distance to 0\n- For figure-8 movement, set horizontal speed to 1/2 of the vertical speed",
       "extensionNamespace": "",
       "fullName": "Sine (or ellipsis) Movement",
