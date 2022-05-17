@@ -1,11 +1,9 @@
 
 
 
-POST http://localhost:8080/message HTTP/1.1
+POST https://127.0.0.1/record HTTP/1.1
 content-type: application/json
 
 {
-    "fname": "Jonh1",
-    "lname": "Happer1",
-    "age": 15
+    "score": 0, "level":1, "user":"MD"  
 }
