@@ -890,6 +890,11 @@
           "name": "Score",
           "type": "string",
           "value": "0"
+        },
+        {
+          "name": "Star",
+          "type": "number",
+          "value": 0
         }
       ],
       "instances": [
@@ -3695,6 +3700,51 @@
                     "\"Gem\"+ToString(RandomInRange(1,2))",
                     "RandomWithStep(100,1200,50)",
                     "RandomInRange(10,50)*4+200",
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "GroupExists"
+                  },
+                  "parameters": [
+                    "\"DB\"",
+                    "\"Star\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "LireFichierExp"
+                  },
+                  "parameters": [
+                    "\"DB\"",
+                    "\"Star\"",
+                    "",
+                    "Star"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StarRating::StarRating::SetRating"
+                  },
+                  "parameters": [
+                    "LiveStar",
+                    "StarRating",
+                    "Variable(Star)",
                     ""
                   ],
                   "subInstructions": []
@@ -4524,6 +4574,38 @@
             }
           ],
           "events": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CenterX"
+              },
+              "parameters": [
+                "Girl",
+                ">",
+                "800"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "EcrireFichierExp"
+              },
+              "parameters": [
+                "\"DB\"",
+                "\"Star\"",
+                "LiveStar.StarRating::Rating()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "layers": [
@@ -4665,6 +4747,12 @@
           "name": "response",
           "type": "string",
           "value": "\" \""
+        },
+        {
+          "folded": true,
+          "name": "Star",
+          "type": "number",
+          "value": 0
         }
       ],
       "instances": [
@@ -4885,8 +4973,8 @@
           "name": "LiveStar",
           "persistentUuid": "d7845bd1-0bb7-4bb2-b90f-d50e5393eded",
           "width": 0,
-          "x": 508,
-          "y": 16,
+          "x": 403,
+          "y": 24,
           "zOrder": 106,
           "numberProperties": [],
           "stringProperties": [],
@@ -7389,7 +7477,7 @@
               "EmptyStarFillColor": "155;155;155",
               "EmptyStarOutlineColor": "155;155;155",
               "StarRotation": 0,
-              "StarPoints": 7,
+              "StarPoints": 10,
               "PositionX": 0
             }
           ],
@@ -7513,6 +7601,64 @@
                   "parameters": [
                     "\"{\\\"level\\\":2,\\\"score\\\":2000,\\\"user\\\":\\\"MD\\\"}\"",
                     "gameData"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "GroupExists"
+                  },
+                  "parameters": [
+                    "\"DB\"",
+                    "\"Score\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "LireFichierExp"
+                  },
+                  "parameters": [
+                    "\"DB\"",
+                    "\"Score\"",
+                    "",
+                    "Score"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "LireFichierExp"
+                  },
+                  "parameters": [
+                    "\"DB\"",
+                    "\"Star\"",
+                    "",
+                    "Star"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "StarRating::StarRating::SetRating"
+                  },
+                  "parameters": [
+                    "LiveStar",
+                    "StarRating",
+                    "Variable(Star)",
+                    ""
                   ],
                   "subInstructions": []
                 }
@@ -8466,6 +8612,50 @@
                 "Score",
                 "=",
                 "-1000"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "Girl",
+                ">",
+                "800"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "EcrireFichierExp"
+              },
+              "parameters": [
+                "\"DB\"",
+                "\"Score\"",
+                "Variable(Score)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "EcrireFichierExp"
+              },
+              "parameters": [
+                "\"DB\"",
+                "\"Star\"",
+                "LiveStar.StarRating::Rating()"
               ],
               "subInstructions": []
             }
