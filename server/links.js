@@ -63,14 +63,40 @@ Link.count({}).then(function(result){
 //     result => console.log(JSON.stringify(result))
 // )
 
-//count
+// #1 count
 // Link.find({}).then(
 //     result => console.log("totls:"+result.length)
 // )
-// nedb not work
+// #2 nedb not work
 // Link.find({}).count().then(
 //     result => console.log(result)
 // )
-Link.count({}).then(
-    result => console.log(result)
+//#3
+// Link.count({}).then(
+//     result => console.log(result)
+// )
+
+//update
+// Link.update({name:"aimee Zank"},{$set:{name:"abc"}}).then(
+//     function(result){
+//         console.log(JSON.stringify(result))
+//     }
+// )
+//update array
+// Link.update({"_id":"LASVJI0IhT3cCb7h"},{$set:{'tags.1':'shopping'}}).then(
+//     result => console.log(JSON.stringify(result))
+// )
+//update push
+// Link.update({"_id":"LASVJI0IhT3cCb7h"},{$push:{'tags':'walking'}}).then(
+//     result => console.log(JSON.stringify(result))
+// )
+
+//$inc
+// Link.update({},{$inc:{favourites:1}}, {multi:true}).then(
+//     result => console.log(JSON.stringify(result))
+// )
+
+//remove
+Link.remove({name:"abc"}).then(
+    result => console.log(JSON.stringify(result))
 )
